@@ -12,6 +12,7 @@ from os.path import join as pjoin
 from torch.utils.data import DataLoader
 from tensorboardX import SummaryWriter
 import argparse
+import faulthandler; faulthandler.enable()
 
 
 class criterion_CEloss(nn.Module):
@@ -138,7 +139,8 @@ class Train:
         if self.args.multi_gpu:
             self.model = nn.DataParallel(self.model).cuda()
         else:
-            self.model = self.model.cuda()
+            pass
+            # self.model = self.model.cuda()
         self.train()
 
 class train_pcd(Train):
